@@ -2,6 +2,7 @@
 
 // Module dependencies.
 const express = require('express');
+const db = require('./app/connection');
 const app = express();
 const port = 3000;
 
@@ -14,4 +15,6 @@ app.get('/', (req, res) => {
 app.listen(port, function() {
     console.log('FiiPractic app started on port ' + port);
 });
+
+
 
