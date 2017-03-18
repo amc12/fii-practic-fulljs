@@ -7,7 +7,9 @@
     "browserify-istanbul": "2.0.0",
     "babelify": "7.3.0",
     "mongoose": "4.8.6",
-    "body-parser": "1.17.1"
+    "body-parser": "1.17.1",
+    "path": "0.12.7",
+    "serve-static": "1.12.1"
   },
   "devDependencies": {
     "grunt": "1.0.1",
