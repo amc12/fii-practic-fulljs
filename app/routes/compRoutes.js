@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const compModel = require('../models/compModel');
 const gameModel = require('../models/gameModel');
+const generate = require('../game_logic/generateGames');
 
 router.route('/competition')
     .get((request, res) => {
@@ -13,12 +14,33 @@ router.route('/competition')
         });
     })
     .post((request, res) => {
-        const comp = new compModel(request.body);
+
+        // Checks before adding a game
+        if (!request.body.players || request.body.players.length % 2 !== 0) {
+            res.send('We need players to generate a competition.');
+            return;
+        }
+        const compObj = {
+            name: request.body.name,
+            rounds: request.body.players.length
+        };
+        const comp = new compModel(compObj);
         comp.save((err, competitions) => {
             if (err) {
                 return res.send(err);
             }
-            return res.send(competitions);
+
+            const compId = competitions._id;
+            const generatedGames = generate.generateGames(compId, request.body.players);
+            if (generatedGames) {
+                return gameModel.create(generatedGames, (err, data) => {
+                    if (err) {
+                        return res.send(err);
+                    }
+                    return res.send(data);
+                });
+            }
+            return res.send('Something went wrong!');
         });
     })
     .delete((request, res) => {
@@ -26,6 +48,7 @@ router.route('/competition')
             if (err) {
                 return res.send(err);
             }   
+
             return gameModel.remove({ comp_id: request.body._id }, (err, games) => {
                 if (err) {
                     return res.send(err);

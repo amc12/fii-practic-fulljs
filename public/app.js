@@ -1,1 +1,1 @@
-angular.module('berger', []);
+angular.module('berger', ['ui.router']);

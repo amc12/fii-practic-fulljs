@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     // Transform all files to es5 and concats them into one single file
-                    'public/build/bundle.js': ['public/components/**/*.js', 'public/services/*.js', 'public/constants/*.js']
+                    'public/build/bundle.js': ['public/components/**/*.js', 'public/services/*.js']
                 }
             }
         },

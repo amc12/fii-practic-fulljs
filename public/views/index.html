@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-app="berger">
 
 <head>
     <title>Fii practic fullJS</title>
@@ -11,21 +11,23 @@
 
     <!--Styles-->
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="styles/main.css" />
 </head>
 
 <!-- Acilisaliya -->
-<body ng-app="berger">
-	<div class="container">
-        <div message-box></div>
-	</div>
+<body>
+	<section class="content">
+        <section ui-view></section>
+    </section>
 </body>
 
 <!--AngularJS-->
 <script type='text/javascript' src='/lib/angular/angular.js'></script>
+<script type='text/javascript' src='/lib/angular-ui-router/release/angular-ui-router.min.js'></script>
 
 <!--Application Init-->
 <script type='text/javascript' src='/app.js'></script>
-<script type='text/javascript' src='/config.js'></script>
 <script type='text/javascript' src='build/bundle.js'></script>
+<script type='text/javascript' src='/config.js'></script>
 
 </html>
