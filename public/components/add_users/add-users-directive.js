@@ -14,6 +14,8 @@ const addUsers = (playerService) => {
         	// Adds a new player
         	scope.addPlayer = () => {
         		if( scope.player.name && scope.player.email ){
+
+                    // What is a promise Pava? a a a?
                     playerService.addPlayer(scope.player).then(() => {
                         playerService.getPlayers().then((resp) => {
                         	

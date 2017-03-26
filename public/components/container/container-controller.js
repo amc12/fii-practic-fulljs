@@ -4,6 +4,9 @@ class containerController{
         this.players = playerRsp.data;
         this.userHeaders = ['Name', 'Email', 'Club', 'Date'];
         this.userKeys = ['name', 'email', 'club', 'date'];
+
+        this.viewValue = 'player';
+       
     }
 }
 

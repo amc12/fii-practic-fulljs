@@ -3,6 +3,12 @@ body {
 	background: url("../images/background.png");
 }
 
+.breadcrumb {
+	.active a {
+		color: #000;
+	}
+}
+
 /** RAIN component styles below **/
 .rain-emoji-block {
 	position: relative;

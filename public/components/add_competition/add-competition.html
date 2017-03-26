@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Add competition</div>
+	<div class="panel-body">
+		<form name="formModel" ng-submit="addCompetition()" novalidate>
+			<div class="form-group" ng-class="{'has-error': formModel.name.$error.required && formModel.$submitted}">
+				<label for="name" class="control-label">Name *</label>
+				<input type="text" class="form-control" name="name" id="name" placeholder="Competition Name" required ng-minlength="2" ng-model="competition.name">
+				<span class="error-block" ng-show="formModel.$submitted">
+				<span ng-show="formModel.name.$error.required">Competition name is required.</span>
+				</span>
+			</div>
+			<div class="form-group">
+				<label  class="control-label">Selected Players *</label>
+				<br/>
+				<select multiple ng-model="competition.players">
+					<option value="{{player._id}}" ng-repeat="player in contCtrl.players">{{player.name}}</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-info">Submit</button>
+		</form>
+	</div>
+</div>

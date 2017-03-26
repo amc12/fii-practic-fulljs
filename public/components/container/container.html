@@ -2,22 +2,28 @@
 
 	<!-- Main Menu -->
 	<ul class="nav nav-tabs nav-justified">
-  		<li role="presentation" class="active"><a href="#">Manager</a></li>
+  		<li role="presentation" class="active"><a href="#">Manager - {{contCtrl.viewValue}}</a></li>
 	</ul>
 	<!-- end of <Main Menu> -->
 	
-	<!-- spacer -->
-	<p>&nbsp;</p>
+	<ol class="breadcrumb">
+		<li ng-class="{active: contCtrl.viewValue === 'player'}"><a href="#" ng-click="changeView('player')">Player</a></li>
+		<li ng-class="{active: contCtrl.viewValue === 'competition'}"><a href="#" ng-click="changeView('competition')">Competition</a></li>
+	</ol>
 
-	<div class="row">
+	<div class="row" ng-show="contCtrl.viewValue === 'player'">
 		<div class="col-lg-12">
 			<add-users></add-users>
 		</div>
-	</div>
-
-	<div class="row">
 		<div class="col-lg-12">
 			<table-component table-headers="contCtrl.userHeaders" table-keys="contCtrl.userKeys" table-body="contCtrl.players" table-title="Players"></table-component>
 		</div>
 	</div>
+
+	<div class="row" ng-show="contCtrl.viewValue === 'competition'">
+		<div class="col-lg-12">
+			<add-competition></add-competition>
+		</div>
+	</div>
+
 </div>

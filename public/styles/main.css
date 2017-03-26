@@ -4,13 +4,18 @@ body {
   background: url("../images/background.png");
 }
 
-/** RAIN component styles below **/
 /* line 7, main.scss */
+.breadcrumb .active a {
+  color: #000;
+}
+
+/** RAIN component styles below **/
+/* line 13, main.scss */
 .rain-emoji-block {
   position: relative;
   overflow: hidden;
 }
-/* line 11, main.scss */
+/* line 17, main.scss */
 .rain-emoji-block .rain-emoji-block__background {
   width: 100%;
   height: 100%;
@@ -19,7 +24,7 @@ body {
   left: 0;
   z-index: 999;
 }
-/* line 19, main.scss */
+/* line 25, main.scss */
 .rain-emoji-block .rain-emoji-block__background span {
   top: -30%;
   position: absolute;
