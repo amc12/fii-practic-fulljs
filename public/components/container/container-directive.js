@@ -1,4 +1,4 @@
-const containerDirective = (viewService) => {
+const containerDirective = () => {
     return {
         templateUrl: 'components/container/container.html',
         restrict: 'E',
@@ -6,20 +6,18 @@ const containerDirective = (viewService) => {
 
         	// Changes the view betweeen panels
             scope.changeSubView = (view) => {
-                viewService.setSubViewValue(view);
                 scope.contCtrl.subViewValue = view;
             }
 
             // Changes the view betweeen panels
         	scope.changeView = (view) => {
-                viewService.setViewValue(view);
         		scope.contCtrl.viewValue = view;
         	}
         }
     };
 };
 
-containerDirective.$inject = ['viewService'];
+containerDirective.$inject = [];
 
 angular.module('berger').directive('containerDirective', containerDirective);
 

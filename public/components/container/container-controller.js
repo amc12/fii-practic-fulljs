@@ -1,5 +1,5 @@
 class containerController{
-    constructor($state, viewService, playerRsp, competitionRsp, gamesRsp) {
+    constructor($state, playerRsp, competitionRsp, gamesRsp) {
     	// Shared properties throughout the application
         this.players = playerRsp.data;
         this.userHeaders = ['Name', 'Email', 'Club', 'Date'];
@@ -12,9 +12,8 @@ class containerController{
         this.games = gamesRsp.data;
 
         // Set the current view based on what we loaded
-        viewService.setViewValue($state.current.name);
-        this.viewValue = viewService.getViewValue();
-        this.subViewValue = viewService.getSubViewValue();
+        this.viewValue = $state.current.name;
+        this.subViewValue = 'player';
 
         if ($state.params && $state.params.compId) {
             this.currentCompId = $state.params.compId;
@@ -22,6 +21,6 @@ class containerController{
     }
 }
 
-containerController.$inject = ['$state', 'viewService', 'playerRsp', 'competitionRsp', 'gamesRsp'];
+containerController.$inject = ['$state', 'playerRsp', 'competitionRsp', 'gamesRsp'];
 
 angular.module('berger').controller('containerController', containerController);
