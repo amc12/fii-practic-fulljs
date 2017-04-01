@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Competition</div>
 	<div class="panel-body">
-		<p ng-repeat="game in contCtrl.games">{{game}}</p>
+		<game ng-repeat="game in contCtrl.games" game-data="game" players="contCtrl.players"></game>
 	</div>
 </div>

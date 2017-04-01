@@ -13,6 +13,8 @@ angular.module('berger')
                     playerRsp: ['playerService', (playerService) => {
                         return playerService.getPlayers().then((rsp) => {
                             return rsp;
+                        }, (err) => {
+                            return err;
                         });
                     }],
                     competitionRsp: ['competitionService', (competitionService) => {

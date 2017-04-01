@@ -1,0 +1,71 @@
+<div class="panel panel-default game">
+	<div class="panel-body">
+	    <div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+				<h3>Game: {{gameData._id}} - Round: {{gameData.round}}</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 col-md-6 col-lg-6">
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-info">
+						<i class="glyphicon glyphicon-user game__player-icon"></i> 
+						<span class="game__player-name">{{playerOne.name}}</span>
+					</li>
+					<li class="list-group-item list-group-item-info">
+						<i class="glyphicon glyphicon-home game__player-icon"></i> 
+						<span class="game__player-name">{{playerOne.club}}</span>
+					</li>
+					<li class="list-group-item list-group-item-info">
+						<i class="glyphicon glyphicon-send game__player-icon"></i> 
+						<span class="game__player-name">{{playerOne.email}}</span>
+					</li>
+					<li class="list-group-item list-group-item-info">
+						<i class="glyphicon glyphicon-king game__player-icon"></i>  
+						<span class="game__player-name">{{gameData.p1_color == 1 ? 'black': 'white'}}</span>
+					</li>
+				</ul>
+			</div>
+			<div class="col-sm-6 col-md-6 col-lg-6">
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-success">
+						<i class="glyphicon glyphicon-user game__player-icon"></i> 
+						<span class="game__player-name">{{playerTwo.name}}</span>
+					</li>
+					<li class="list-group-item list-group-item-success">
+						<i class="glyphicon glyphicon-home game__player-icon"></i> 
+						<span class="game__player-name">{{playerTwo.club}}</span>
+					</li>
+					<li class="list-group-item list-group-item-success">
+						<i class="glyphicon glyphicon-send game__player-icon"></i> 
+						<span class="game__player-name">{{playerTwo.email}}</span>
+					</li>
+					<li class="list-group-item list-group-item-success">
+						<i class="glyphicon glyphicon-king game__player-icon"></i>  
+						<span class="game__player-name">{{gameData.p2_color == 1 ? 'black' : 'white'}}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+				<h3 ng-if="gameData.status !== 0">Status: {{gameData.status}}</h3>
+				<div ng-if="gameData.status === 0">
+					<!-- Standard button -->
+					<form name="endGameForm" novalidate>
+						<button type="button" class="btn btn-default" ng-click="endGame()">End Game</button>
+						<label class="radio-inline">
+							<input type="radio" name="gameStatus" ng-model="game.status" value="1"> Player 1
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="gameStatus" ng-model="game.status" value="2"> Draw
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="gameStatus" ng-model="game.status" value="3"> Player 2
+						</label>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
