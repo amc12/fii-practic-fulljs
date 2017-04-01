@@ -22,7 +22,7 @@ router.route('/game')
         });
     })
     .put((request, res) => {
-        gameModel.findOneAndUpdate({ _id: request.body._id }, { $set: request.body }, (err, games) => {
+        gameModel.findOneAndUpdate({ _id: request.body.id }, { $set: request.body }, (err, games) => {
             if (err) {
                 return res.send(err);
             }
@@ -32,7 +32,7 @@ router.route('/game')
 
 router.route('/game/:id')
 	.get((request, res) => {
-		gameModel.findOne({ 'comp_id': request.params.id}, {}, (err, games) => {
+		gameModel.find({ 'comp_id': request.params.id}, {}, (err, games) => {
             if (err) {
                 return res.send(err);
             }

@@ -2,16 +2,28 @@
 
 	<!-- Main Menu -->
 	<ul class="nav nav-tabs nav-justified">
-  		<li role="presentation" class="active"><a href="#">Manager - {{contCtrl.viewValue}}</a></li>
+  		<li role="presentation" ng-class="{active: contCtrl.viewValue === 'manager'}">
+  			<a href="/#!/" ng-click="changeView('manager')">Manager</a>
+		</li>
+  		<li role="presentation" ng-repeat="comp in contCtrl.competitions" ng-class="{active: contCtrl.currentCompId === comp._id}">
+  			<a href="/#!/competition/{{comp._id}}" ng-click="changeView('competition')">{{comp.name}}</a>
+		</li>
 	</ul>
 	<!-- end of <Main Menu> -->
 	
-	<ol class="breadcrumb">
-		<li ng-class="{active: contCtrl.viewValue === 'player'}"><a href="#" ng-click="changeView('player')">Player</a></li>
-		<li ng-class="{active: contCtrl.viewValue === 'competition'}"><a href="#" ng-click="changeView('competition')">Competition</a></li>
+	<!-- Sub Menu - Player/Competition -->
+	<ol class="breadcrumb" ng-show="contCtrl.viewValue === 'manager'">
+		<li ng-class="{active: contCtrl.subViewValue === 'player'}">
+			<a href="/#!/" ng-click="changeSubView('player')">Player</a>
+		</li>
+		<li ng-class="{active: contCtrl.subViewValue === 'competition'}">
+			<a href="/#!/" ng-click="changeSubView('competition')">Competition</a>
+		</li>
 	</ol>
+	<!-- end of <Sub Menu> -->
 
-	<div class="row" ng-show="contCtrl.viewValue === 'player'">
+	<!-- Add and List players -->
+	<div class="row" ng-show="contCtrl.subViewValue === 'player' && contCtrl.viewValue === 'manager'">
 		<div class="col-lg-12">
 			<add-users></add-users>
 		</div>
@@ -20,9 +32,20 @@
 		</div>
 	</div>
 
-	<div class="row" ng-show="contCtrl.viewValue === 'competition'">
+	<!-- Add and List competitions -->
+	<div class="row" ng-show="contCtrl.subViewValue === 'competition' && contCtrl.viewValue === 'manager'">
 		<div class="col-lg-12">
 			<add-competition></add-competition>
+		</div>
+		<div class="col-lg-12">
+			<table-component table-headers="contCtrl.competitionHeaders" table-keys="contCtrl.competitionKeys" table-body="contCtrl.competitions" table-title="Competitions"></table-component>
+		</div>
+	</div>
+
+	<!-- This will show when we click on a competition -->
+	<div class="row" ng-if="contCtrl.viewValue === 'competition'">
+		<div class="col-lg-12">
+			<competition-directive></competition-directive>
 		</div>
 	</div>
 

@@ -4,7 +4,7 @@ angular.module('berger')
 
         // States for my app
         $stateProvider
-            .state('home', {
+            .state('manager', {
                 url: '/',
                 controller: 'containerController',
                 controllerAs: 'contCtrl',
@@ -14,6 +14,40 @@ angular.module('berger')
                         return playerService.getPlayers().then((rsp) => {
                             return rsp;
                         });
+                    }],
+                    competitionRsp: ['competitionService', (competitionService) => {
+                        return competitionService.getCompetition().then((rsp) => {
+                            return rsp;
+                        });
+                    }],
+                    gamesRsp: [() => {
+                        return false;
+                    }]
+                }
+            })
+            .state('competition', {
+                url: '/competition/:compId',
+                controller: 'containerController',
+                controllerAs: 'contCtrl',
+                template: '<container-directive></container-directive>',
+                resolve: {
+                    playerRsp: ['playerService', (playerService) => {
+                        return playerService.getPlayers().then((rsp) => {
+                            return rsp;
+                        });
+                    }],
+                    competitionRsp: ['competitionService', (competitionService) => {
+                        return competitionService.getCompetition().then((rsp) => {
+                            return rsp;
+                        });
+                    }],
+                    gamesRsp: ['$stateParams', 'gameService', ($stateParams, gameService) => {
+                        if ($stateParams.compId) {
+                            return gameService.getGames($stateParams.compId).then((rsp) => {
+                                return rsp;
+                            });
+                        }
+                        return false;
                     }]
                 }
             });

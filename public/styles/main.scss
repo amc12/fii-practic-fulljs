@@ -9,6 +9,24 @@ body {
 	}
 }
 
+.competition {
+	background: #fff;
+	color: #000;
+}
+
+/** GAME COMPETITION STYLES **/
+.game {
+	.game__player-name {
+		padding-left: 1rem;
+	}
+	
+	.game__player-icon {
+		display: inline-block;
+		vertical-align: middle;			
+	}
+}
+
+
 /** RAIN component styles below **/
 .rain-emoji-block {
 	position: relative;

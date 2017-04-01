@@ -15,6 +15,10 @@ const addCompetition = (competitionService) => {
         		if( scope.competition.name && scope.competition.players){
                     competitionService.addCompetition(scope.competition).then(() => {
                         competitionService.getCompetition().then((resp) => {
+
+                            // Update competitions data
+                            scope.contCtrl.competitions = resp.data;
+
                             // General properties
 				            scope.competition = {
 				                name: '',

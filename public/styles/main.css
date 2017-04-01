@@ -9,13 +9,30 @@ body {
   color: #000;
 }
 
+/* line 12, main.scss */
+.competition {
+  background: #fff;
+  color: #000;
+}
+
+/** GAME COMPETITION STYLES **/
+/* line 19, main.scss */
+.game .game__player-name {
+  padding-left: 1rem;
+}
+/* line 23, main.scss */
+.game .game__player-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /** RAIN component styles below **/
-/* line 13, main.scss */
+/* line 31, main.scss */
 .rain-emoji-block {
   position: relative;
   overflow: hidden;
 }
-/* line 17, main.scss */
+/* line 35, main.scss */
 .rain-emoji-block .rain-emoji-block__background {
   width: 100%;
   height: 100%;
@@ -24,7 +41,7 @@ body {
   left: 0;
   z-index: 999;
 }
-/* line 25, main.scss */
+/* line 43, main.scss */
 .rain-emoji-block .rain-emoji-block__background span {
   top: -30%;
   position: absolute;
