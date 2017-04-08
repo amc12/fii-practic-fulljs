@@ -1,4 +1,4 @@
-const addCompetition = (competitionService) => {
+const addCompetition = (competitionService, socketService) => {
 	return {
 		templateUrl: 'components/add_competition/add-competition.html',
 		restrict: 'E',
@@ -28,6 +28,9 @@ const addCompetition = (competitionService) => {
                             // Reset the form after success
                             scope.formModel.$setPristine();
                             scope.formModel.$setUntouched();
+
+                            // Send to server an impulse that we've added the competition
+                            socketService.socketEmit('newCompetition', 1);
                         });
                     });
                 }
@@ -36,6 +39,6 @@ const addCompetition = (competitionService) => {
 	}
 }
 
-addCompetition.$inject = ['competitionService'];
+addCompetition.$inject = ['competitionService', 'socketService'];
 
 angular.module('berger').directive('addCompetition', addCompetition);

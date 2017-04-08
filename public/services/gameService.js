@@ -17,7 +17,7 @@ class gameService {
 
     endGame(data) {
         const configObject = {
-            method: 'POST',
+            method: 'PUT',
             url: '/game',
             data: JSON.stringify(data),
         };

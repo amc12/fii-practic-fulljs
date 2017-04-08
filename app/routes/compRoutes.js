@@ -22,7 +22,7 @@ router.route('/competition')
         }
         const compObj = {
             name: request.body.name,
-            rounds: request.body.players.length
+            rounds: request.body.players.length - 1
         };
         const comp = new compModel(compObj);
         comp.save((err, competitions) => {
@@ -53,7 +53,7 @@ router.route('/competition')
                 if (err) {
                     return res.send(err);
                 }
-                return res.send(competitions, games);
+                return res.send('Competition with assigned games, deleted!');
             });
         });
     })
@@ -65,6 +65,5 @@ router.route('/competition')
             res.send(competitions);
         });
     });
-    
     
 module.exports = router;

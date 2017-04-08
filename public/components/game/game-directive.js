@@ -1,8 +1,10 @@
-const gameComponent = (gameService) => {
+const gameComponent = ($rootScope, gameService) => {
     return {
         templateUrl: 'components/game/game.html',
         restrict: 'E',
         scope: {
+            competitions: '=',
+            allGames: '=',
             gameData: '=', //{p1_id : '', p2_id: ''}
             players: '=', //[player]
         },
@@ -23,6 +25,12 @@ const gameComponent = (gameService) => {
                     delete gameData._id;
                     gameService.endGame(gameData).then((rsp) => {
                     	scope.gameData = rsp.data;
+                        scope.allGames.forEach((obj) => {
+                            if (obj._id === scope.gameData._id) {
+                                obj.status = scope.gameData.status;
+                            }
+                        });
+                        $rootScope.$broadcast('gameFinished', 1);
                     });
                 }
             }
@@ -30,5 +38,6 @@ const gameComponent = (gameService) => {
     }
 }
 
-gameComponent.$inject = ['gameService'];
+gameComponent.$inject = ['$rootScope', 'gameService'];
+
 angular.module('berger').directive('game', gameComponent);

@@ -25,6 +25,22 @@ app.get('/', (req, res) => {
 });
 
 // Start the app by listening on 3000
-app.listen(port, function() {
+const server = app.listen(port, function() {
     console.log('FiiPractic app started on port ' + port);
 });
+
+const io = require('socket.io')(server);
+
+io.on('connection', function (socket) {
+	console.log('The socket is on!');
+
+	// When we recieve that a new competition was added send back so we update all opened applications
+	socket.on('newCompetition', function (from) {
+		socket.broadcast.emit('newCompetition', {
+			source: from
+		});
+	});
+});
+
+// Expose app
+exports = module.exports = app;
